@@ -10,7 +10,7 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -59,7 +59,7 @@ public class TechJobs {
 
                 // What is their search term?
                 System.out.println("\nSearch term:");
-                String searchTerm = in.nextLine();
+                String searchTerm = in.nextLine().toLowerCase();
 
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
@@ -112,14 +112,25 @@ public class TechJobs {
                 validChoice = true;
             }
 
-        } while(!validChoice);
+        } while (!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
+    //private static void printJobs(ArrayList<HashMap<String, String>> someJobs)
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() == 0) {
+            System.out.println("\nNo Results");
+        } else {
+            for (HashMap<String, String> jobs : someJobs) {
+                System.out.println("*****");
+                for (Map.Entry<String, String> job : jobs.entrySet()) {
+                    System.out.println(job.getKey() + ": " + job.getValue());
+                }
+                System.out.println("*****\n");
+            }           //System.out.println("printJobs is not implemented yet");
+            //System.out.println(someJobs);
+        }
     }
 }
